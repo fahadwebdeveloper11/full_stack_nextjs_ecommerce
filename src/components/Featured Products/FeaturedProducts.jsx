@@ -1,13 +1,11 @@
 "use client";
 
-import { prodcuts } from "@/constant/products";
-import React, { useEffect, useState } from "react";
-import Card from "../common/Card/Card";
-import { Skeleton } from "../ui/skeleton";
-import SkeletonCard from "../common/SkeletonCard";
-import axios from "axios";
-import { Provider } from "react-redux";
 import { store } from "@/lib/store";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import Card from "../common/Card/Card";
+import SkeletonCard from "../common/SkeletonCard";
 
 const FeaturedProducts = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);

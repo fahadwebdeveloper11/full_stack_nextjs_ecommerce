@@ -4,7 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import React, { useState, useRef } from "react";
+import  { useState, useRef } from "react";
 
 const VerifyEmail = () => {
   const [isVerifying, setIsVerifying] = useState(false);

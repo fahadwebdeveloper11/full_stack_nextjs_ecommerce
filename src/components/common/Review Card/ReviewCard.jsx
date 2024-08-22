@@ -1,6 +1,5 @@
 import { Rating } from "@mui/material";
 import Image from "next/image";
-import React from "react";
 
 const ReviewCard = ({ avatar, name, comment, rating }) => {
   return (

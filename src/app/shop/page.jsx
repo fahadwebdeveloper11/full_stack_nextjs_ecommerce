@@ -1,7 +1,9 @@
 "use client";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
-import { useEffect, useState } from "react";
+import Card from "@/components/common/Card/Card";
+import SkeletonCard from "@/components/common/SkeletonCard";
+import { store } from "@/lib/store";
 import {
   Dialog,
   DialogBackdrop,
@@ -14,25 +16,21 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   FunnelIcon,
   MinusIcon,
-  PlusIcon,
-  Squares2X2Icon,
+  PlusIcon
 } from "@heroicons/react/20/solid";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
-import Card from "@/components/common/Card/Card";
-import useSWR from "swr";
-import SkeletonCard from "@/components/common/SkeletonCard";
-import { useDebounceValue } from "usehooks-ts";
 import { Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Provider } from "react-redux";
-import { store } from "@/lib/store";
+import useSWR from "swr";
+import { useDebounceValue } from "usehooks-ts";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

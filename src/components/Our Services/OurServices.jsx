@@ -13,6 +13,8 @@ const AboutServicesCard = memo(function AboutServicesCard({ datas }) {
     </div>
   );
 });
+
+AboutServicesCard.displayName ="AboutServicesCard"
 const OurServices = () => {
   return (
     <div>
@@ -24,7 +26,6 @@ const OurServices = () => {
     </div>
   );
 };
-
 
 
 export default OurServices;

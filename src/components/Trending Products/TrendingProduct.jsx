@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { register } from "swiper/element/bundle";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Skeleton } from "@/components/ui/skeleton";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -11,12 +10,12 @@ import "swiper/css/navigation";
 import "./styles.css";
 
 // import required modules
+import { store } from "@/lib/store";
+import axios from "axios";
+import { Provider } from "react-redux";
 import { Navigation } from "swiper/modules";
 import Card from "../common/Card/Card";
-import axios from "axios";
 import SkeletonCard from "../common/SkeletonCard";
-import { Provider } from "react-redux";
-import { store } from "@/lib/store";
 const TrendingProduct = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

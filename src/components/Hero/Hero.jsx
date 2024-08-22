@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 
 const Hero = () => {
   return (
@@ -25,7 +25,7 @@ const Hero = () => {
             >
               Shop Now
             </Link>
-          
+
           </div>
         </div>
         <div className="mt-10 sm:mt-0 sm:block sm:w-[45%] lg:w-2/4 relative">

@@ -1,7 +1,6 @@
-import React from 'react'
+import AuthProvider from '@/context/AuthProvider'
 import StoreProvider from '../StoreProvider'
 import Cart from './Cart'
-import AuthProvider from '@/context/AuthProvider'
 
 const page = () => {
   return (

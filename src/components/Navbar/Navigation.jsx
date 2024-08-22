@@ -1,6 +1,5 @@
 "use client";
 import { LogOut, User } from "lucide-react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,11 +12,11 @@ import {
 
 import "flowbite";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
 import ThemeToggle from "../Theme/ThemeToggle";
 import { Skeleton } from "../ui/skeleton";
 const Navigation = () => {
@@ -32,9 +31,7 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("flowbite/dist/flowbite");
-    }
+    import("flowbite/dist/flowbite");
   }, []);
 
   return (
@@ -215,7 +212,7 @@ const Navigation = () => {
             </div>
           </div>
           {status === "loading" ? (
-            <Skeleton className={"w-10 h-10 rounded-full"}/>
+            <Skeleton className={"w-10 h-10 rounded-full"} />
           ) : user ? (
             <ProfileMenu user={user} />
           ) : (

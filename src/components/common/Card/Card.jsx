@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { addToCart } from "@/redux/cartSlice";
 import { Rating } from "@mui/material";
 import Link from "next/link";
-import React, { memo } from "react";
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 
 const Card = ({ item }) => {
