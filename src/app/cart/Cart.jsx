@@ -266,7 +266,7 @@ function Cart() {
   );
 }
 
-const CartDetails = memo(({ details, handleChange }) => {
+memo(function CartDetails({ details, handleChange }) {
   return (
     <div className=" bg-white dark:bg-gray-800 rounded-lg shadow">
       <div className="flex">

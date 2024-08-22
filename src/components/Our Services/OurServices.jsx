@@ -13,14 +13,16 @@ const OurServices = () => {
   );
 };
 
-const AboutServicesCard = memo(({ datas }) => {
+memo(function AboutServicesCard({ datas }) {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="h-14 mb-5">{datas.icon}</div>
       <h1 className="mb-3 text-xl font-medium text-[#2B2B2B] capitalize dark:text-gray-200">
         {datas.title}
       </h1>
-      <p className="text-[#57667e] dark:text-gray-500 text-lg">{datas.shortDesc}</p>
+      <p className="text-[#57667e] dark:text-gray-500 text-lg">
+        {datas.shortDesc}
+      </p>
     </div>
   );
 });
