@@ -164,7 +164,7 @@ function AdminOrders() {
   );
 }
 
-const ActionsMenu = memo(function () {
+const ActionsMenu = memo(function ActionsMenu() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const onDeleteClose = () => {
@@ -235,5 +235,8 @@ const ActionsMenu = memo(function () {
     </>
   );
 });
+
+ActionsMenu.displayName = "ActionsMenu";
+
 
 export default AdminOrders;

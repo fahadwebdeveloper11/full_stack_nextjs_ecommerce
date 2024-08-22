@@ -42,20 +42,25 @@ function AdminHome() {
     console.log(selectedPage);
   };
 
-  const fetchUrl = useCallback(() => {
-    let url = `/api/product/get-shop-products?page=${page}`;
-    if (debouncedValue[0]) {
-      url += `&search=${debouncedValue[0]}`;
-    }
-    if (category) {
-      url += `&category=${category}`;
-    }
-    return url;
-  }, [page, debouncedValue[0], category]);
+  // const fetchUrl = useCallback(() => {
+  //   let url = `/api/product/get-shop-products?page=${page}`;
+  //   if (debouncedValue[0]) {
+  //     url += `&search=${debouncedValue[0]}`;
+  //   }
+  //   if (category) {
+  //     url += `&category=${category}`;
+  //   }
+  //   return url;
+  // }, [page, debouncedValue[0], category]);
 
   // Create a URL variable that will change as dependencies change
-  const url = fetchUrl();
+  // const url = fetchUrl();
 
+  const url = `/api/product/get-shop-products?page=${page}${
+    debouncedValue ? `&search=${debouncedValue}` : ""
+  }${category ? `&category=${category}` : ""}`;
+
+  // const { data, error, isLoading } = useSWR(url, fetcher);
   // Use useSWR with the URL
   const { data, error, isLoading } = useSWR(url, fetcher);
 
@@ -471,7 +476,7 @@ function AdminHome() {
   );
 }
 
-const ActionsMenu = memo(function({ product }) {
+const ActionsMenu = memo(function ActionsMenu({ product }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const onDeleteClose = () => {
@@ -530,5 +535,7 @@ const ActionsMenu = memo(function({ product }) {
     </>
   );
 });
+
+ActionsMenu.displayName = "ActionsMenu";
 
 export default AdminHome;

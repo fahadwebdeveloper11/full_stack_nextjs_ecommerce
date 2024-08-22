@@ -266,7 +266,7 @@ function Cart() {
   );
 }
 
-const CartDetails = memo(function ({ details, handleChange }) {
+const CartDetails = memo(function CartDetails({ details, handleChange }) {
   return (
     <div className=" bg-white dark:bg-gray-800 rounded-lg shadow">
       <div className="flex">
@@ -332,5 +332,7 @@ const CartDetails = memo(function ({ details, handleChange }) {
     </div>
   );
 });
+
+CartDetails.displayName = "CartDetails";
 
 export default Cart;
