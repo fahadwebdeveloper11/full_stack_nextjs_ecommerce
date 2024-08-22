@@ -471,7 +471,7 @@ function AdminHome() {
   );
 }
 
-const ActionsMenu = memo(({ product }) => {
+const ActionsMenu = memo(function({ product }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const onDeleteClose = () => {

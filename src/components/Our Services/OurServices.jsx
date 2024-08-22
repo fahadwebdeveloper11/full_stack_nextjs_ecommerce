@@ -1,19 +1,6 @@
 import { aboutServicesData } from "@/constant/servicesData";
 import { memo } from "react";
-
-const OurServices = () => {
-  return (
-    <div>
-      <div className="px-[10px] md:px-10 flex-wrap flex mx-auto justify-center sm:justify-between sm:flex-row flex-col items-center gap-8 py-8 md:py-16">
-        {aboutServicesData.map((data, index) => (
-          <AboutServicesCard key={index} datas={data} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-memo(function AboutServicesCard({ datas }) {
+const AboutServicesCard = memo(function AboutServicesCard({ datas }) {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="h-14 mb-5">{datas.icon}</div>
@@ -26,5 +13,18 @@ memo(function AboutServicesCard({ datas }) {
     </div>
   );
 });
+const OurServices = () => {
+  return (
+    <div>
+      <div className="px-[10px] md:px-10 flex-wrap flex mx-auto justify-center sm:justify-between sm:flex-row flex-col items-center gap-8 py-8 md:py-16">
+        {aboutServicesData.map((data, index) => (
+          <AboutServicesCard key={index} datas={data} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 
 export default OurServices;

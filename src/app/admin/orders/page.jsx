@@ -164,7 +164,7 @@ function AdminOrders() {
   );
 }
 
-const ActionsMenu = memo(() => {
+const ActionsMenu = memo(function () {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const onDeleteClose = () => {
