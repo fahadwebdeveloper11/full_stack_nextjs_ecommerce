@@ -16,12 +16,11 @@ import {
 import axios from "axios";
 import { Delete, Pencil } from "lucide-react";
 import Link from "next/link";
-import { memo, useCallback, useState } from "react";
+import { memo, useEffect, useState } from "react";
+import { ColorRing } from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
 import useSWR from "swr";
 import { useDebounceValue } from "usehooks-ts";
-import Loading from "../loading";
-import { ColorRing } from "react-loader-spinner";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -29,6 +28,8 @@ function AdminHome() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const debouncedValue = useDebounceValue(search, 300);
 
@@ -56,23 +57,41 @@ function AdminHome() {
   // Create a URL variable that will change as dependencies change
   // const url = fetchUrl();
 
-  const url = `/api/product/get-shop-products?page=${page}${
-    debouncedValue ? `&search=${debouncedValue}` : ""
-  }${category ? `&category=${category}` : ""}`;
+  const fetchProducts = async (url) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(url);
+      console.log(response);
 
-  // const { data, error, isLoading } = useSWR(url, fetcher);
-  // Use useSWR with the URL
-  const { data, error, isLoading } = useSWR(url, fetcher);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  if (error) {
-    return <div>Failed to load</div>;
-  }
+  // if (error) {
+  //   return <div>Failed to load</div>;
+  // }
+  useEffect(() => {
+    let url = `/api/product/get-shop-products?page=${page}`;
+
+    if (debouncedValue[0]) {
+      url += `&search=${debouncedValue[0]}`;
+    }
+    if (category) {
+      url += `&category=${category}`;
+    }
+
+    fetchProducts(url);
+  }, [category, page, debouncedValue[0]]);
 
   const { data: allStats } = useSWR("/api/stats", fetcher);
 
   const stats = allStats?.stats;
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <section className=" dark:bg-gray-900 p-3 sm:p-5">
