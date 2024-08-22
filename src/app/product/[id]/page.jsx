@@ -14,7 +14,7 @@ import { Rating } from "@mui/material";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-const Product = ({ params }) => {
+function Product({ params }) {
   const { data, isLoading, error } = useSWR(
     `/api/product/get-details/${params?.id}`,
     fetcher
@@ -162,6 +162,6 @@ const Product = ({ params }) => {
       </div>
     </SessionProvider>
   );
-};
+}
 
 export default Product;

@@ -14,7 +14,7 @@ import DeleteProductModal from "@/components/Admin Components/Delete Product Mod
 import { Delete, Pencil } from "lucide-react";
 import ManageOrder from "@/components/Admin Components/Manage Order/ManageOrder";
 
-const AdminOrders = () => {
+function AdminOrders() {
   const deleteOrderHanlder = async (id) => {};
 
   const orders = [
@@ -162,7 +162,7 @@ const AdminOrders = () => {
       </section>
     </div>
   );
-};
+}
 
 const ActionsMenu = memo(() => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -231,8 +231,7 @@ const ActionsMenu = memo(() => {
         order={{}}
         isOrderOpen={isOrderOpen}
         onOrderClose={onOrderClose}
-       
-        />
+      />
     </>
   );
 });

@@ -22,7 +22,7 @@ console.log(
   "process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
-const Cart = () => {
+function Cart() {
   const user = useSession()?.data?.user;
   // console.log("user", user);
 
@@ -127,9 +127,12 @@ const Cart = () => {
                   </th>
                 </tr>
               </thead>
-              {cartItems?.map((item) => (
-                <tbody>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <tbody>
+                {cartItems?.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  >
                     <td className="p-4">
                       <img
                         src={item.image.url}
@@ -213,8 +216,8 @@ const Cart = () => {
                       />
                     </td>
                   </tr>
-                </tbody>
-              ))}
+                ))}
+              </tbody>
             </table>
           ) : (
             <div className="min-h-[40vh] flex items-center justify-center flex-col shadow-md gap-1 rounded-sm">
@@ -261,7 +264,7 @@ const Cart = () => {
       </div>
     </>
   );
-};
+}
 
 const CartDetails = memo(({ details, handleChange }) => {
   return (

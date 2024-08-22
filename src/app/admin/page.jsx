@@ -25,7 +25,7 @@ import { ColorRing } from "react-loader-spinner";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-const Home = () => {
+function AdminHome() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -53,7 +53,11 @@ const Home = () => {
     return url;
   }, [page, debouncedValue[0], category]);
 
-  const { data, error, isLoading } = useSWR(fetchUrl, fetcher);
+  // Create a URL variable that will change as dependencies change
+  const url = fetchUrl();
+
+  // Use useSWR with the URL
+  const { data, error, isLoading } = useSWR(url, fetcher);
 
   if (error) {
     return <div>Failed to load</div>;
@@ -465,7 +469,7 @@ const Home = () => {
       </div>
     </section>
   );
-};
+}
 
 const ActionsMenu = memo(({ product }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -527,4 +531,4 @@ const ActionsMenu = memo(({ product }) => {
   );
 });
 
-export default Home;
+export default AdminHome;
