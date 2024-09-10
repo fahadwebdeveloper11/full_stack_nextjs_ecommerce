@@ -9,7 +9,7 @@ const page = () => {
           Got a technical issue? Want to send feedback about a beta feature?
           Need details about our Business plan? Let us know.
         </p>
-        <form action="" className="space-y-8" onSubmit={handleSubmit}>
+        <form action="" className="space-y-8" >
           <div>
             <label
               htmlFor="email"
