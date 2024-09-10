@@ -14,7 +14,7 @@ export async function POST(request) {
       price_data: {
         currency: "pkr",
         product_data: {
-          _id: product._id,
+         
           name: product.title,
           description: product.description,
           images: [product.image.url],
