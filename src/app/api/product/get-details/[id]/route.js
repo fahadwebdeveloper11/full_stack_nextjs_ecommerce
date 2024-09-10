@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
     const id = params.id;
     console.log(id);
     const product = await Product.findById(id);
-
+    console.log(product);
     if (!product) {
       return Response.json(
         {

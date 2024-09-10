@@ -286,7 +286,7 @@ const Navigation = () => {
                   path === "/about"
                     ? "text-rose-500 dark:text-rose-500"
                     : "dark:text-white"
-                } block py-2 px-3 rounded md:bg-transparent hover:text-rose-500 md:p-0 dark:text-white`}
+                } block py-2 px-3 rounded md:bg-transparent hover:text-rose-500 md:p-0 `}
               >
                 About
               </Link>

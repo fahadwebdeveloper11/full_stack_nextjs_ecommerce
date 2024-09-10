@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/dbConfig";
 import Review from "@/models/ReviewModel";
+import User from "@/models/UserModel";
 
 export async function GET(request, { params }) {
   await connectDB();
@@ -10,7 +11,7 @@ export async function GET(request, { params }) {
     const reviews = await Review.find({ product: id }).populate(
       "user",
       "name avatar"
-    );
+    ).limit(10);
 
     return Response.json(
       {

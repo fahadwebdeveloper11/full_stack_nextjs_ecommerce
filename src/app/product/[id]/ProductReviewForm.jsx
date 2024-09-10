@@ -29,6 +29,7 @@ const fetcher = (url) => axios.get(url).then((res) => res.data);
 const ProductReviewForm = ({ productId }) => {
   const [rating, setRating] = useState(0);
   const userId = useSession()?.data?.user?._id;
+  console.log("productId", productId);
 
   const theme = "dark";
 
@@ -75,7 +76,7 @@ const ProductReviewForm = ({ productId }) => {
         <div className="flex justify-between gap-6 flex-wrap">
           <div className="w-full  sm:w-[63%]">
             <h1 className="text-2xl font-semibold dark:text-white text-[#202938] pb-2 border-b border-b-gray-300">
-              Customer Reviews
+              Customer Reviews ({data?.reviews?.length})
             </h1>
 
             {/* Reviews List */}

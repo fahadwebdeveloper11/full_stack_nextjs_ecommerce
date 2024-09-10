@@ -15,6 +15,8 @@ import { Rating } from "@mui/material";
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 function Product({ params }) {
+
+    console.log(params?.id);
  
   const { data, isLoading, error } = useSWR(
     `/api/product/get-details/${params?.id}`,

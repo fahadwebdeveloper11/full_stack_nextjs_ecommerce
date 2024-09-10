@@ -4,10 +4,10 @@ const Product = dynamic(() => import("./product"), {
   ssr: false,
 });
 
-const page = () => {
+const page = ({ params }) => {
   return (
     <>
-      <Product />
+      <Product params={params}/>
     </>
   );
 };
