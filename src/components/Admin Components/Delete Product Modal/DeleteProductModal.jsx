@@ -21,17 +21,17 @@ function DeleteModal({
   isOrderDelete = false,
   isUserDelete = false,
 }) {
-  console.log(id);
+  // console.log(id);
   const { toast } = useToast();
   const handleDelete = async () => {
     try {
       if (isOrderDelete) {
         const res = await axios.delete(`/api/order/delete/${id}`);
-        console.log(res);
+        // console.log(res);
         return;
       } else if (isUserDelete) {
         const res = await axios.delete(`/api/users/delete/${id}`);
-        console.log(res);
+        // console.log(res);
         toast({
           title: "User Deleted",
           description: "User has been deleted successfully",
@@ -39,9 +39,9 @@ function DeleteModal({
         return;
       }
       const res = await axios.delete(`/api/product/delete/${id}`);
-      console.log(res);
+      // console.log(res);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 

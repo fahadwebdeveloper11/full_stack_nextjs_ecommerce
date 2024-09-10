@@ -41,7 +41,7 @@ const UpdateModal = ({ product, isOpen, onClose = () => {} }) => {
   };
 
   const handleInputChange = (e) => {
-    console.log(e.target?.files);
+    // console.log(e.target?.files);
     setProductData({
       ...productData,
       [e.target.name]: e.target.files ? e.target.files[0] : e.target.value,

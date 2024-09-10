@@ -30,7 +30,7 @@ const MemoizedFooterLinks = memo(FooterLinks);
 const Footer = () => {
   const pathname = usePathname();
 
-  console.log(pathname);
+  // console.log(pathname);
 
   if (pathname.startsWith("/admin")) return null;
 

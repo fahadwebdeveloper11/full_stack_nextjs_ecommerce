@@ -38,8 +38,8 @@ function AdminHome() {
       behavior: "smooth",
     });
     setPage(selectedPage.selected + 1);
-    console.log(selectedPage.selected);
-    console.log(selectedPage);
+    // console.log(selectedPage.selected);
+    // console.log(selectedPage);
   };
 
   // const fetchUrl = useCallback(() => {
@@ -60,11 +60,11 @@ function AdminHome() {
     setIsLoading(true);
     try {
       const response = await axios.get(url);
-      console.log(response);
+    //   console.log(response);
 
       setData(response.data);
     } catch (error) {
-      console.log(error);
+    //   console.log(error);
     } finally {
       setIsLoading(false);
     }

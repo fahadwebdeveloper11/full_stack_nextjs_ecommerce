@@ -6,7 +6,7 @@ import React from "react";
 
 const Profile = () => {
   const user = useSession()?.data?.user;
-  console.log("user", user);
+//   console.log("user", user);
 
   return (
     <div className="flex items-start justify-center my-10">

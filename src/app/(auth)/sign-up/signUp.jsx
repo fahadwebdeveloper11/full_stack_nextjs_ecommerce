@@ -75,7 +75,7 @@ const SignUp = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res);
+    //   console.log(res);
 
       if (res.data?.success) {
         toast({
@@ -87,7 +87,7 @@ const SignUp = () => {
 
       router.push(`/verify/${data.username}`);
     } catch (error) {
-      console.log(error);
+    //   console.log(error);
 
       toast({
         title: "Sign up failed",
@@ -104,7 +104,7 @@ const SignUp = () => {
   }, [avatar]);
 
   useEffect(() => {
-    console.log(debouncedUsername);
+    // console.log(debouncedUsername);
     const checkUsernameUnique = async () => {
       if (debouncedUsername[0]) {
         setUsernameMessage("");
@@ -116,9 +116,9 @@ const SignUp = () => {
           );
           const message = response.data.message;
           setUsernameMessage(message);
-          console.log(response);
+        //   console.log(response);
         } catch (error) {
-          console.log(error);
+        //   console.log(error);
           setUsernameMessage(error.response?.data?.message);
         } finally {
           setIsCheckingUsername(false);

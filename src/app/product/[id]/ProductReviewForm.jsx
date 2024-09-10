@@ -37,7 +37,7 @@ const ProductReviewForm = ({ productId }) => {
     fetcher
   );
 
-  console.log("Review Data", data);
+  // console.log("Review Data", data);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -51,7 +51,7 @@ const ProductReviewForm = ({ productId }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     setIsSubmitting(true);
     try {
       const res = await axios.post("/api/review/create", {
@@ -64,7 +64,7 @@ const ProductReviewForm = ({ productId }) => {
       form.reset();
       setRating(0);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -132,7 +132,7 @@ const ProductReviewForm = ({ productId }) => {
                 name="simple-controlled"
                 value={rating}
                 onChange={(event, newValue) => {
-                  console.log("value", newValue);
+                  // console.log("value", newValue);
                   setRating(newValue);
                 }}
                 max={5}

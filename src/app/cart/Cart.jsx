@@ -18,10 +18,10 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-console.log(
-  "process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+// console.log(
+//   "process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+// );
 function Cart() {
  
   const user = useSession()?.data?.user;
@@ -65,7 +65,7 @@ function Cart() {
 
     const session = response.data; // The Stripe response
 
-    console.log("session", session);
+    // console.log("session", session);
     const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });

@@ -96,7 +96,7 @@ const Shop = () => {
   };
 
   const handleFilterChange = useCallback((filterId, optionValue) => {
-    console.log("re-rendered");
+    // console.log("re-rendered");
     setFilters((prevFilters) =>
       prevFilters.map((filter) =>
         filter.id === filterId
@@ -116,7 +116,7 @@ const Shop = () => {
 
   const handleSortClick = useCallback(
     (optionName) => {
-      console.log("clicked", optionName);
+    //   console.log("clicked", optionName);
       setSortOptions((prevOptions) =>
         prevOptions.map((option) =>
           option.name === optionName
@@ -150,7 +150,7 @@ const Shop = () => {
   } = useSWR(filterUrl(), fetcher);
 
   const pageCount = productsResponse?.totalPages || 1;
-  console.log(productsResponse);
+//   console.log(productsResponse);
 
   const handlePageClick = (selectedPage) => {
     window.scrollTo({
@@ -158,8 +158,8 @@ const Shop = () => {
       behavior: "smooth",
     });
     setPage(selectedPage.selected + 1);
-    console.log(selectedPage.selected);
-    console.log(selectedPage);
+    // console.log(selectedPage.selected);
+    // console.log(selectedPage);
   };
 
   const { data: allCategoriesResponse, error: allCategoriesError } = useSWR(

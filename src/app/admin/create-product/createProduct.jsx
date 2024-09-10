@@ -30,14 +30,14 @@ const CreateProduct = () => {
   };
 
   const handleInputChange = (e) => {
-    console.log(e.target?.files);
+    // console.log(e.target?.files);
     setProductData({
       ...productData,
       [e.target.name]: e.target.files ? e.target.files[0] : e.target.value,
     });
   };
 
-  console.log("productData", productData);
+//   console.log("productData", productData);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ const CreateProduct = () => {
         productData.color.map((c) => c.value)
       );
 
-      console.log(formData);
+    //   console.log(formData);
 
       const response = await axios.post("/api/product/create", formData, {
         headers: {
@@ -68,9 +68,9 @@ const CreateProduct = () => {
         },
       });
 
-      console.log(response);
+    //   console.log(response);
     } catch (error) {
-      console.log(error);
+    //   console.log(error);
     } finally {
       setIsSubmitting(false);
     }

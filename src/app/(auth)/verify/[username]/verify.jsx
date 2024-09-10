@@ -34,7 +34,7 @@ const VerifyEmail = () => {
         }
       );
 
-      console.log(res);
+    //   console.log(res);
       if (res.data.success) {
         router.push("/sign-in");
       }
@@ -45,7 +45,7 @@ const VerifyEmail = () => {
         variant: res.data.success ? "success" : "destructive",
       });
     } catch (error) {
-      console.log(error);
+    //   console.log(error);
 
       toast({
         title: "Verification failed",

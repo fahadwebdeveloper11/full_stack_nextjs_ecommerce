@@ -17,7 +17,7 @@ const FeaturedProducts = () => {
         const res = await axios.get("/api/product/featured-products");
         setFeaturedProducts(res.data.products);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       } finally {
         setIsLoading(false);
       }
