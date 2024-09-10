@@ -35,9 +35,7 @@ const Navigation = () => {
     import("flowbite/dist/flowbite");
   }, []);
 
-  if (typeof window === "undefined") {
-    return;
-  }
+ 
 
   return (
     <nav className="bg-white dark:text-white relative z-[999999] dark:bg-gray-900 w-full border-b border-gray-200 dark:border-gray-600">

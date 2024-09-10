@@ -23,8 +23,6 @@ import { useDebounceValue } from "usehooks-ts";
 import useClientSide from "../../../hooks/client";
 
 const SignUp = () => {
-  
- 
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
@@ -40,11 +38,11 @@ const SignUp = () => {
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
   const router = useRouter();
   const { toast } = useToast();
-
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -52,6 +50,14 @@ const SignUp = () => {
       toast({
         title: "Avatar is required",
         description: "",
+        variant: "destructive",
+      });
+      return setIsSubmitting(false);
+    }
+    if (data.password !== data.confirmPassword) {
+      toast({
+        title: "Passwords do not match",
+        description: "Please enter the same password in both fields",
         variant: "destructive",
       });
       return setIsSubmitting(false);
@@ -122,7 +128,6 @@ const SignUp = () => {
     checkUsernameUnique();
   }, [debouncedUsername[0]]);
 
-  
   return (
     <section className="flex flex-col items-center pt-6 my-8">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -142,8 +147,8 @@ const SignUp = () => {
                   <FormItem className="flex flex-col items-center">
                     <FormLabel></FormLabel>
                     <FormControl>
-                      <div className="w-32 h-32 rounded-full relative">
-                        <Avatar className="absolute w-full h-full">
+                      <div className="w-32  h-32 rounded-full relative">
+                        <Avatar className="absolute cursor-pointer w-full h-full">
                           <AvatarImage
                             src={avatarURL}
                             alt="@shadcn"
@@ -158,7 +163,7 @@ const SignUp = () => {
                           </AvatarFallback>
                         </Avatar>
                         <Input
-                          className="opacity-0 w-full h-full"
+                          className="opacity-0 cursor-pointer w-full h-full"
                           accept="image/*"
                           type="file"
                           {...field}
@@ -272,6 +277,25 @@ const SignUp = () => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="**********"
+                        {...field}
+                        type="password"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <Button
                 type="submit"
                 disabled={isCheckingUsername}
