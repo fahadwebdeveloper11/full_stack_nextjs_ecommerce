@@ -6,6 +6,8 @@ import { Toaster as ShadCnToast } from "../ui/toaster";
 import { Toaster } from "react-hot-toast";
 import Navigation from "../Navbar/Navigation";
 
+
+
 export default function ClientOnlyComps() {
   return (
     <>
@@ -14,7 +16,7 @@ export default function ClientOnlyComps() {
           <Navigation />
         </AuthProvider>
       </Theme>
-      <Toaster containerStyle={{ zIndex: 999999999 }}/>
+      <Toaster containerStyle={{ zIndex: 999999999 }} />
       <ShadCnToast />
     </>
   );

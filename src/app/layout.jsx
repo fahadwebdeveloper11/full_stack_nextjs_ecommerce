@@ -1,4 +1,9 @@
-import ClientOnlyLayout from "@/components/common/ClientOnlyComps";
+import dynamic from "next/dynamic";
+
+const ClientOnlyLayout = dynamic(() => import("@/components/common/ClientOnlyComps"), {
+  ssr: false,
+})
+
 import Footer from "@/components/Footer/Footer";
 import { Inter } from "next/font/google";
 import "./globals.css";

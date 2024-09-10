@@ -4,10 +4,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
 const initialState = {
-  cartItems:
-    sessionStorage.getItem("cartItems")?.length > 0
-      ? JSON.parse(sessionStorage.getItem("cartItems"))
-      : [],
+  cartItems: typeof window !== "undefined" && sessionStorage.getItem("cartItems")
+    ? JSON.parse(sessionStorage.getItem("cartItems"))
+    : [],
   cartTotal: 0,
   cartQtyTotal: 0,
 };
@@ -26,7 +25,9 @@ const cartSlice = createSlice({
         return;
       } else {
         state.cartItems.push({ ...action.payload, itemQty: 1 });
-        sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        }
         toast.success(`${action.payload.title} added to cart`);
       }
     },
@@ -38,7 +39,9 @@ const cartSlice = createSlice({
       );
       toast.success(`${item.title} removed from cart`);
 
-      sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
     },
 
     increaseQty: (state, action) => {
@@ -50,7 +53,9 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].quantity > state.cartItems[itemIndex].itemQty
       ) {
         state.cartItems[itemIndex].itemQty += 1;
-        sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        }
       } else {
         toast.error("Out of stock");
       }
@@ -61,7 +66,9 @@ const cartSlice = createSlice({
       );
       if (itemIndex >= 0 && state.cartItems[itemIndex].itemQty > 1) {
         state.cartItems[itemIndex].itemQty -= 1;
-        sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        }
       }
     },
 

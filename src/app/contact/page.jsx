@@ -1,6 +1,6 @@
 
 
-const Contact = () => {
+const page = () => {
   return (
     <div>
       Contact
@@ -8,4 +8,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default page

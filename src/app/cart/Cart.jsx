@@ -23,6 +23,7 @@ console.log(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 function Cart() {
+ 
   const user = useSession()?.data?.user;
   // console.log("user", user);
 
@@ -99,6 +100,10 @@ function Cart() {
   useEffect(() => {
     dispatch(calculateTotals());
   }, [cartItems]);
+
+  if (typeof window === "undefined") {
+    return;
+  }
   return (
     <>
       <div className=" mt-10 lg:max-w-screen-xl mx-auto">

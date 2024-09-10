@@ -1,12 +1,8 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogTitle
 } from "@/components/ui/dialog";
 
 const ManageOrder = ({ isOrderOpen, onOrderClose }) => {
@@ -42,7 +38,7 @@ const ManageOrder = ({ isOrderOpen, onOrderClose }) => {
 
   const cancelOrder = () => {};
   return (
-    <Dialog open={isOrderOpen} onOpenChange={onOrderClose}>
+    <Dialog open={isOrderOpen}  onOpenChange={onOrderClose}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Order: {order?._id}</DialogTitle>

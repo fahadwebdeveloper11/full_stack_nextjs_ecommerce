@@ -1,5 +1,4 @@
 "use client";
-import { LogOut, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LogOut, User } from "lucide-react";
 
 import "flowbite";
 import { signOut, useSession } from "next-auth/react";
@@ -20,6 +20,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import ThemeToggle from "../Theme/ThemeToggle";
 import { Skeleton } from "../ui/skeleton";
 const Navigation = () => {
+ 
   const path = usePathname();
   const { data: session, status } = useSession();
   // console.log("status", status);
@@ -33,6 +34,10 @@ const Navigation = () => {
   useEffect(() => {
     import("flowbite/dist/flowbite");
   }, []);
+
+  if (typeof window === "undefined") {
+    return;
+  }
 
   return (
     <nav className="bg-white dark:text-white relative z-[999999] dark:bg-gray-900 w-full border-b border-gray-200 dark:border-gray-600">
