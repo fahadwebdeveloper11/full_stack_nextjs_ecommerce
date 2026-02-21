@@ -510,7 +510,7 @@ const ActionsMenu = memo(function ActionsMenu({ product, fetchProducts }) {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const onDeleteClose = () => {
     setIsDeleteOpen(false);
-    fetchProducts();
+    // fetchProducts();
   };
 
   const onDeleteOpen = () => {
@@ -518,7 +518,10 @@ const ActionsMenu = memo(function ActionsMenu({ product, fetchProducts }) {
   };
 
   const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+    fetchProducts();
+  };
   return (
     <>
       <DropdownMenu>
