@@ -1,13 +1,17 @@
 "use client";
 
 import MultiSelect from "@/components/common/Multi Select/MultiSelect";
+import { toast, useToast } from "@/components/ui/use-toast";
 import { colorOptions, sizeOptions } from "@/constant/colorAndSizeOptions";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const CreateProduct = () => {
+  const router = useRouter();
+  const { toast } = useToast();
   const [productData, setProductData] = useState({
     title: "",
     description: "",
@@ -69,7 +73,10 @@ const CreateProduct = () => {
       });
 
       if (response.status === 200) {
-        toast.success("Product created successfully");
+        toast({
+          title: "Success",
+          description: "Product created successfully",
+        });
         router.push("/admin");
       }
       //   console.log(response);
