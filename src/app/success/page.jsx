@@ -16,8 +16,8 @@ const SuccessPage = () => {
         </h1>
 
         <p className="text-gray-600 dark:text-gray-400 mb-10 text-lg leading-relaxed px-2">
-          Thank you for your purchase. Your order has been placed and we've sent
-          a confirmation to your email.
+          Thank you for your purchase. Your order has been placed and we&apos;ve
+          sent a confirmation to your email.
         </p>
 
         <div className="flex flex-col gap-4 w-full px-2">
