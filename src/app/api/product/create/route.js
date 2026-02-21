@@ -44,7 +44,7 @@ export async function POST(request) {
           success: false,
           message: "Please fill all the fields",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -54,12 +54,13 @@ export async function POST(request) {
           success: false,
           message: "Image is required",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
-    const uploadDir = path.resolve("./public");
-    const filePath = path.join(uploadDir, image?.name);
+    const uploadDir = "/tmp";
+    const uniqueFileName = `${Date.now()}-${image?.name}`;
+    const filePath = path.join(uploadDir, uniqueFileName);
 
     // Ensure the directory exists
     if (!fs.existsSync(uploadDir)) {
@@ -80,7 +81,7 @@ export async function POST(request) {
           success: false,
           message: "Image upload failed. Please try again",
         },
-        { status: 402 }
+        { status: 402 },
       );
     }
 
@@ -113,7 +114,7 @@ export async function POST(request) {
         message: "Product created successfully",
         product: newProduct,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -122,7 +123,7 @@ export async function POST(request) {
         success: false,
         message: error,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

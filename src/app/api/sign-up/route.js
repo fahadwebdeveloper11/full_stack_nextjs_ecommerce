@@ -27,8 +27,9 @@ export async function POST(request) {
       );
     }
 
-    const uploadDir = path.resolve("./public");
-    const filePath = path.join(uploadDir, avatar?.name);
+    const uploadDir = "/tmp";
+    const uniqueFileName = `${Date.now()}-${avatar?.name}`;
+    const filePath = path.join(uploadDir, uniqueFileName);
 
     // Ensure the directory exists
     if (!fs.existsSync(uploadDir)) {
