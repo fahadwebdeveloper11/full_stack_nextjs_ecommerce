@@ -37,7 +37,7 @@ const CreateProduct = () => {
     });
   };
 
-//   console.log("productData", productData);
+  //   console.log("productData", productData);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -53,14 +53,14 @@ const CreateProduct = () => {
       formData.append("discountedPrice", productData.discountedPrice);
       formData.append(
         "size",
-        productData.size.map((s) => s.value.toUpperCase())
+        productData.size.map((s) => s.value.toUpperCase()),
       );
       formData.append(
         "color",
-        productData.color.map((c) => c.value)
+        productData.color.map((c) => c.value),
       );
 
-    //   console.log(formData);
+      //   console.log(formData);
 
       const response = await axios.post("/api/product/create", formData, {
         headers: {
@@ -68,9 +68,13 @@ const CreateProduct = () => {
         },
       });
 
-    //   console.log(response);
+      if (response.status === 200) {
+        toast.success("Product created successfully");
+        router.push("/admin");
+      }
+      //   console.log(response);
     } catch (error) {
-    //   console.log(error);
+      //   console.log(error);
     } finally {
       setIsSubmitting(false);
     }
