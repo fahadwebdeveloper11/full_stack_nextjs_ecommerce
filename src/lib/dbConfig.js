@@ -9,8 +9,6 @@ export const connectDB = async () => {
     console.log("Database is already connected");
     return;
   } else {
-    console.log("process.env.MONGO_URI ", process.env.MONGO_URI);
-
     try {
       let dbUri = process.env.MONGO_URI;
 
