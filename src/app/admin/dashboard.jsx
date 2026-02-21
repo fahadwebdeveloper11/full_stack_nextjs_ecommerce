@@ -510,7 +510,7 @@ const ActionsMenu = memo(function ActionsMenu({ product, fetchProducts }) {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const onDeleteClose = () => {
     setIsDeleteOpen(false);
-    // fetchProducts();
+    fetchProducts();
   };
 
   const onDeleteOpen = () => {
