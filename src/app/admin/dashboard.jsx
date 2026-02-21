@@ -445,7 +445,11 @@ function AdminHome() {
                       <td className="px-4 py-3 flex items-center justify-start">
                         <ActionsMenu
                           product={product}
-                          fetchProducts={fetchProducts}
+                          fetchProducts={() =>
+                            fetchProducts(
+                              `/api/product/get-shop-products?page=${page}`,
+                            )
+                          }
                         />
                       </td>
                     </tr>
