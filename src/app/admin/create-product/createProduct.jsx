@@ -6,7 +6,7 @@ import { colorOptions, sizeOptions } from "@/constant/colorAndSizeOptions";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CreateProduct = () => {
