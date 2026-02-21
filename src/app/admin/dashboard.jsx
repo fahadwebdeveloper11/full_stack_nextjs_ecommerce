@@ -21,7 +21,7 @@ import ReactPaginate from "react-paginate";
 import useSWR from "swr";
 import { useDebounceValue } from "usehooks-ts";
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 function AdminHome() {
   const [page, setPage] = useState(1);
@@ -60,11 +60,11 @@ function AdminHome() {
     setIsLoading(true);
     try {
       const response = await axios.get(url);
-    //   console.log(response);
+      //   console.log(response);
 
       setData(response.data);
     } catch (error) {
-    //   console.log(error);
+      //   console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +92,6 @@ function AdminHome() {
 
   // console.log(data);
 
- 
   return (
     <section className=" dark:bg-gray-900 p-3 sm:p-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-3 mb-10 gap-4 ">
@@ -138,7 +137,9 @@ function AdminHome() {
             </svg>
           </div>
           <div className="text-right">
-            <p className="text-2xl">{stats?.totalOrders || "557"}</p>
+            <p className="text-2xl">
+              {stats?.totalOrders?.totalOrders || "557"}
+            </p>
             <p>Orders</p>
           </div>
         </div>
@@ -161,7 +162,9 @@ function AdminHome() {
             </svg>
           </div>
           <div className="text-right">
-            <p className="text-2xl">{stats?.totalSales || "$11,257"}</p>
+            <p className="text-2xl">
+              {stats?.totalSales?.totalSales || "$11,257"}
+            </p>
             <p>Sales</p>
           </div>
         </div>

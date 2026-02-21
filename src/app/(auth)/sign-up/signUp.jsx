@@ -45,6 +45,8 @@ const SignUp = () => {
   const { toast } = useToast();
 
   const onSubmit = async (data) => {
+    console.log("data", data);
+
     setIsSubmitting(true);
     if (!avatar) {
       toast({
@@ -54,6 +56,9 @@ const SignUp = () => {
       });
       return setIsSubmitting(false);
     }
+    console.log("password", data.password);
+    console.log("confirmPassword", data.confirmPassword);
+
     if (data.password !== data.confirmPassword) {
       toast({
         title: "Passwords do not match",
@@ -75,7 +80,7 @@ const SignUp = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-    //   console.log(res);
+      //   console.log(res);
 
       if (res.data?.success) {
         toast({
@@ -87,7 +92,7 @@ const SignUp = () => {
 
       router.push(`/verify/${data.username}`);
     } catch (error) {
-    //   console.log(error);
+      //   console.log(error);
 
       toast({
         title: "Sign up failed",
@@ -112,13 +117,13 @@ const SignUp = () => {
 
         try {
           const response = await axios.get(
-            `/api/check-username-unique?username=${debouncedUsername[0]}`
+            `/api/check-username-unique?username=${debouncedUsername[0]}`,
           );
           const message = response.data.message;
           setUsernameMessage(message);
-        //   console.log(response);
+          //   console.log(response);
         } catch (error) {
-        //   console.log(error);
+          //   console.log(error);
           setUsernameMessage(error.response?.data?.message);
         } finally {
           setIsCheckingUsername(false);

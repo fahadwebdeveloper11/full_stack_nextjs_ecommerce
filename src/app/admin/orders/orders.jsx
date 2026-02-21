@@ -11,30 +11,46 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Delete, Pencil } from "lucide-react";
-import { memo, useState } from "react";
+// import { useSession } from "next-auth/react";
 
+//  import { useSession } from "next-auth/react";
+import { memo, useState } from "react";
+import useSWR from "swr";
+import { fetcher } from "../dashboard";
+import { ColorRing } from "react-loader-spinner";
 function AdminOrders() {
   const deleteOrderHanlder = async (id) => {};
 
-  const orders = [
-    {
-      customer: { name: "test" },
-      _id: 1,
-      name: "test",
-      orderStatus: "Pending",
-      amount: 100,
-      orderItems: [
-        {
-          quantity: 4,
-          price: 100,
-        },
-      ],
-    },
-  ];
+  // const { data: session } = useSWR("/api/auth/session");
+
+  const {
+    data: orders,
+    isLoading,
+    error,
+  } = useSWR("/api/orders/all-orders", fetcher);
+
+  // const orders = [
+  //   {
+  //     customer: { name: "test" },
+  //     _id: 1,
+  //     name: "test",
+  //     orderStatus: "Pending",
+  //     amount: 100,
+  //     orderItems: [
+  //       {
+  //         quantity: 4,
+  //         price: 100,
+  //       },
+  //     ],
+  //   },
+  // ];
+
+  console.log(orders, "orders");
 
   return (
     <div className="">
       <section className="   dark:bg-gray-900 p-3 sm:p-5 antialiased">
+        {error && <p>Error: {error.message}</p>}
         <div className="mx-auto pt-6 max-w-screen-xl ">
           <div className="bg-white min-h-[20rem]  dark:bg-gray-800 relative shadow-md rounded-lg overflow-hidden">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -56,7 +72,39 @@ function AdminOrders() {
             <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t dark:border-gray-700">
               <div className="w-full md:w-1/2"></div>
             </div>
-            {orders.length > 0 ? (
+            {isLoading ? (
+              <div
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 999999,
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+                className="dark:bg-gray-800 bg-[rgba(255, 255, 255, 0.9)]"
+              >
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="color-ring-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="color-ring-wrapper"
+                  colors={[
+                    "#e15b64",
+                    "#f47e60",
+                    "#f8b26a",
+                    "#abbd81",
+                    "#849b87",
+                  ]}
+                />
+              </div>
+            ) : orders?.orders?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -80,46 +128,49 @@ function AdminOrders() {
                       </th>
                     </tr>
                   </thead>
-                  {orders?.map((order) => (
-                    <tbody key={order._id}>
-                      <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-4 py-3">{order.customer.name}</td>
-                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          <div className="flex items-center">
-                            <div className="h-4 w-4 rounded-full inline-block mr-2 bg-red-700" />
-                            {order.orderItems.reduce((total, order) => {
-                              const { quantity } = order;
-                              total += quantity;
-                              return total;
-                            }, 0)}
-                          </div>
-                        </td>
+                  {orders?.orders?.map((order) => {
+                    const { customer } = order;
+                    const o = order?._doc;
+                    return (
+                      <tbody key={order._id}>
+                        <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                          <td className="px-4 py-3">{customer?.name}</td>
+                          <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <div className="flex items-center">
+                              <div className="h-4 w-4 rounded-full inline-block mr-2 bg-red-700" />
+                              {o?.orderItems?.reduce((total, order) => {
+                                const { quantity } = order;
+                                total += quantity;
+                                return total;
+                              }, 0)}
+                            </div>
+                          </td>
 
-                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          <div className="flex items-center">
-                            <span className="text-gray-500 dark:text-gray-400 ml-1">
-                              ${order.amount}
-                            </span>
-                          </div>
-                        </td>
+                          <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <div className="flex items-center">
+                              <span className="text-gray-500 dark:text-gray-400 ml-1">
+                                ${o?.amount}
+                              </span>
+                            </div>
+                          </td>
 
-                        <td
-                          className="px-4 py-3"
-                          style={{
-                            color:
-                              order.orderStatus === "PENDING"
-                                ? "#FF9800"
-                                : order.orderStatus === "DELIEVERED"
-                                ? "#59CD89"
-                                : order.orderStatus === "CANCELLED"
-                                ? "red"
-                                : "#474747",
-                          }}
-                        >
-                          {order.orderStatus}
-                        </td>
-                        <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                          {/* <div className="flex gap-5 items-center">
+                          <td
+                            className="px-4 py-3"
+                            style={{
+                              color:
+                                o?.status?.toUpperCase() === "PENDING"
+                                  ? "#FF9800"
+                                  : o?.status?.toUpperCase() === "DELIVERED"
+                                    ? "#59CD89"
+                                    : o?.status?.toUpperCase() === "CANCELLED"
+                                      ? "red"
+                                      : "#474747",
+                            }}
+                          >
+                            {o?.status}
+                          </td>
+                          <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {/* <div className="flex gap-5 items-center">
                             <Link href={`/dashboard/all-orders/${order._id}`}>
                               Manage
                             </Link>
@@ -146,11 +197,12 @@ function AdminOrders() {
                               Delete
                             </button>
                           </div> */}
-                          <ActionsMenu />
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
+                            <ActionsMenu order={order} />
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
                 </table>
               </div>
             ) : (
@@ -163,7 +215,7 @@ function AdminOrders() {
   );
 }
 
-const ActionsMenu = memo(function ActionsMenu() {
+const ActionsMenu = memo(function ActionsMenu({ order: recievedOrder }) {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const onDeleteClose = () => {
@@ -227,7 +279,7 @@ const ActionsMenu = memo(function ActionsMenu() {
         isOrderDelete={true}
       />
       <ManageOrder
-        order={{}}
+        order={recievedOrder}
         isOrderOpen={isOrderOpen}
         onOrderClose={onOrderClose}
       />

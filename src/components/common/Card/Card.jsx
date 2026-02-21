@@ -17,8 +17,8 @@ const Card = ({ item }) => {
       <div className="relative overflow-hidden h-full xs:h-[390px] sm:h-[280px] self-start w-full ">
         <img
           className="p-1 h-full rounded-t-lg object-cover w-full"
-          src={item.image.url}
-          alt={item.title}
+          src={item?.image?.url}
+          alt={item?.title}
         />
         <Button
           onClick={() => addCart(item)}
@@ -29,25 +29,30 @@ const Card = ({ item }) => {
       </div>
 
       <div className="px-5 py-2">
-        <Link href={`/product/${item._id}`}>
+        <Link href={`/product/${item?._id}`}>
           <h5 className="text-base text-center font-semibold tracking-tight text-gray-900 dark:text-white">
-            {item.title}
+            {item?.title}
           </h5>
         </Link>
 
         <div className="flex items-center justify-center mt-2.5 mb-5">
-          <Rating value={item.rating} precision={0.5} name="read-only" readOnly />
+          <Rating
+            value={item?.rating}
+            precision={0.5}
+            name="read-only"
+            readOnly
+          />
           <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-          {item.rating.toFixed(1)}
+            {item?.rating?.toFixed(1)}
           </span>
         </div>
 
         <div className="flex items-center justify-center gap-1">
           <span className="text-lg font-bold text-gray-900 dark:text-white">
-            Rs {item.price}
+            Rs {item?.price}
           </span>
           <span className="line-through text-[#777777] text-base">
-            Rs {item.discountedPrice}
+            Rs {item?.discountedPrice}
           </span>
         </div>
       </div>

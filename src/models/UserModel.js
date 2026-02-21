@@ -25,7 +25,7 @@ const userSchema = new Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     verifyCode: {
       type: String,
@@ -38,7 +38,7 @@ const userSchema = new Schema(
       type: Date,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

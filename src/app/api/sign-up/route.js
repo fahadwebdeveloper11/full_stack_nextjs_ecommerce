@@ -23,7 +23,7 @@ export async function POST(request) {
     if (!avatar) {
       return Response.json(
         { success: false, message: "Avatar is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -46,7 +46,7 @@ export async function POST(request) {
           success: false,
           message: "All fields are required",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -61,7 +61,7 @@ export async function POST(request) {
           success: false,
           message: "User already exist. Please Sign in!",
         },
-        { status: 402 }
+        { status: 402 },
       );
     }
 
@@ -75,7 +75,7 @@ export async function POST(request) {
             success: false,
             message: "User already exist. Please Sign in!",
           },
-          { status: 402 }
+          { status: 402 },
         );
       } else {
         if (filePath) {
@@ -86,7 +86,7 @@ export async function POST(request) {
                 success: false,
                 message: "Please provide avatar!",
               },
-              { status: 400 }
+              { status: 400 },
             );
           }
           existingUserByEmail.avatar = avatar.url;
@@ -104,14 +104,18 @@ export async function POST(request) {
     } else {
       let avatarUrl;
       if (filePath) {
+        console.log("filePath", filePath);
+
         avatarUrl = await uploadOnCloudinary(filePath);
+        console.log("avatarUrl", avatarUrl);
+
         if (!avatarUrl) {
           return Response.json(
             {
               success: false,
               message: "Please provide avatar!",
             },
-            { status: 400 }
+            { status: 400 },
           );
         }
       }
@@ -134,7 +138,7 @@ export async function POST(request) {
     const emailResponse = await SendVerificationEmail(
       username,
       verifyCode,
-      email
+      email,
     );
     console.log(emailResponse);
 
@@ -144,7 +148,7 @@ export async function POST(request) {
           success: false,
           message: "Email not sent. Please try again later!",
         },
-        { status: 402 }
+        { status: 402 },
       );
     }
 
@@ -153,7 +157,7 @@ export async function POST(request) {
         success: true,
         message: "User register successfully. Please verify your email.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -163,7 +167,7 @@ export async function POST(request) {
         success: false,
         message: "Something went wrong. Please try again later!" + error,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

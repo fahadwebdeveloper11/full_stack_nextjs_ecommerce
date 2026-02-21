@@ -20,4 +20,8 @@ export const signUpSchema = z.object({
     .string()
     .min(6, { message: "Password must be at least 6 characters" })
     .max(20, { message: "Password must be less than 20 characters" }),
+  confirmPassword: z
+    .string()
+    .min(6, { message: "Confirm Password must be at least 6 characters" })
+    .max(20, { message: "Confirm Password must be less than 20 characters" }),
 });

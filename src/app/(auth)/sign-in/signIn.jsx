@@ -20,7 +20,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
- 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm({
     resolver: zodResolver(signInSchema),
@@ -31,7 +30,6 @@ const SignIn = () => {
   });
   const router = useRouter();
   const { toast } = useToast();
-
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -127,7 +125,7 @@ const SignIn = () => {
                   className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                   href="/sign-up"
                 >
-                  Sign in here
+                  Sign up here
                 </Link>
               </p>
             </form>

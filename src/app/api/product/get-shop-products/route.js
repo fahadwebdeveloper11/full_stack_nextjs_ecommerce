@@ -76,7 +76,7 @@ export async function GET(request) {
       },
       {
         status: 200,
-      }
+      },
     );
   } catch (error) {
     console.log(error);
@@ -87,7 +87,7 @@ export async function GET(request) {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }

@@ -24,11 +24,16 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (!token && url.pathname.startsWith("/profile")) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+  if (!token) {
+    if (
+      url.pathname.startsWith("/profile") ||
+      url.pathname.startsWith("/admin")
+    ) {
+      return NextResponse.redirect(new URL("/sign-in", request.url));
+    }
   }
 
-  if (!token && !token?.isAdmin && url.pathname.startsWith("/admin")) {
+  if (token && !token.isAdmin && url.pathname.startsWith("/admin")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 

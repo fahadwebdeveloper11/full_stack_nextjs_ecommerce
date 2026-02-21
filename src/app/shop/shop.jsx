@@ -89,7 +89,7 @@ const Shop = () => {
           ...option,
           checked: false,
         })),
-      }))
+      })),
     );
 
     setMaxPrice(0);
@@ -106,26 +106,26 @@ const Shop = () => {
                 (option) =>
                   option.value === optionValue
                     ? { ...option, checked: true } // Only check the selected option
-                    : { ...option, checked: false } // Uncheck all others
+                    : { ...option, checked: false }, // Uncheck all others
               ),
             }
-          : filter
-      )
+          : filter,
+      ),
     );
   });
 
   const handleSortClick = useCallback(
     (optionName) => {
-    //   console.log("clicked", optionName);
+      //   console.log("clicked", optionName);
       setSortOptions((prevOptions) =>
         prevOptions.map((option) =>
           option.name === optionName
             ? { ...option, current: true }
-            : { ...option, current: false }
-        )
+            : { ...option, current: false },
+        ),
       );
     },
-    [setSortOptions]
+    [setSortOptions],
   );
 
   const baseUrl = `/api/product/get-shop-products?page=${page}`;
@@ -150,7 +150,7 @@ const Shop = () => {
   } = useSWR(filterUrl(), fetcher);
 
   const pageCount = productsResponse?.totalPages || 1;
-//   console.log(productsResponse);
+  console.log("productsResponse --", productsResponse);
 
   const handlePageClick = (selectedPage) => {
     window.scrollTo({
@@ -164,10 +164,10 @@ const Shop = () => {
 
   const { data: allCategoriesResponse, error: allCategoriesError } = useSWR(
     "/api/category/get-all-categories",
-    fetcher
+    fetcher,
   );
 
-  // console.log(allCategoriesResponse);
+  console.log("allCategoriesResponse --", allCategoriesResponse);
   useEffect(() => {
     if (allCategoriesResponse) {
       setFilters((prevFilters) =>
@@ -177,11 +177,11 @@ const Shop = () => {
                 ...filter,
                 options: allCategoriesResponse?.categories?.map((c) => ({
                   value: c._id,
-                  label: c.title,
+                  label: c.category_name || c?.title,
                 })),
               }
-            : filter
-        )
+            : filter,
+        ),
       );
     }
   }, [allCategoriesResponse]);
@@ -425,7 +425,7 @@ const Shop = () => {
                             option.current
                               ? "font-medium text-gray-900 dark:text-white"
                               : "text-gray-500 dark:text-gray-300",
-                            "block px-4 py-2 text-sm dark:data-[focus]:bg-gray-700 data-[focus]:bg-gray-200  hover:cursor-pointer"
+                            "block px-4 py-2 text-sm dark:data-[focus]:bg-gray-700 data-[focus]:bg-gray-200  hover:cursor-pointer",
                           )}
                         >
                           {option.name}

@@ -14,7 +14,6 @@ export async function POST(request) {
       price_data: {
         currency: "pkr",
         product_data: {
-         
           name: product.title,
           description: product.description,
           images: [product.image.url],
@@ -32,20 +31,20 @@ export async function POST(request) {
       success_url: `${
         request.headers.origin || "http://localhost:3000"
       }/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.headers.origin || "http://localhost:3000"}/cancel`,
+      cancel_url: `${request.headers.origin || "http://localhost:3000"}/shop`,
       client_reference_id: token?._id,
     });
 
     return Response.json(
       { sessionId: session.id, success: true, message: "success" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
 
     return Response.json(
       { success: false, message: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

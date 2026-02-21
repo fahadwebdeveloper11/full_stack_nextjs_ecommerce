@@ -9,13 +9,25 @@ export const connectDB = async () => {
     console.log("Database is already connected");
     return;
   } else {
+    console.log("process.env.MONGO_URI ", process.env.MONGO_URI);
+
     try {
-      const response = await mongoose.connect(
-        `${process.env.MONGO_URI}/ecommerce`
-      );
+      let dbUri = process.env.MONGO_URI;
+
+      // Handle potential trailing slash in base URI
+      if (dbUri.includes("?")) {
+        const [base, query] = dbUri.split("?");
+        const cleanBase = base.endsWith("/") ? base.slice(0, -1) : base;
+        dbUri = `${cleanBase}/ecommerce?${query}`;
+      } else {
+        const cleanBase = dbUri.endsWith("/") ? dbUri.slice(0, -1) : dbUri;
+        dbUri = `${cleanBase}/ecommerce`;
+      }
+
+      const response = await mongoose.connect(dbUri);
 
       console.log(`MongoDB connected: ${response.connection.host}`);
-      connection.isConnected = response.connection[0]?.readyState;
+      connection.isConnected = response.connections[0].readyState;
     } catch (error) {
       console.log(error);
       process.exit(1);
