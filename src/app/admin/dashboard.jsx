@@ -443,7 +443,10 @@ function AdminHome() {
                       <td className="px-4 py-3">4.5</td>
                       <td className="px-4 py-3">Rs {product.price}</td>
                       <td className="px-4 py-3 flex items-center justify-start">
-                        <ActionsMenu product={product} />
+                        <ActionsMenu
+                          product={product}
+                          fetchProducts={fetchProducts}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -498,11 +501,12 @@ function AdminHome() {
   );
 }
 
-const ActionsMenu = memo(function ActionsMenu({ product }) {
+const ActionsMenu = memo(function ActionsMenu({ product, fetchProducts }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const onDeleteClose = () => {
     setIsDeleteOpen(false);
+    fetchProducts();
   };
 
   const onDeleteOpen = () => {
