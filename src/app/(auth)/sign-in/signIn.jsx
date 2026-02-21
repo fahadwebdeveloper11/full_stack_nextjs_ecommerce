@@ -61,8 +61,15 @@ const SignIn = () => {
     <section className="flex flex-col items-center pt-6 my-8">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-10 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div
+            className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400"
+            role="alert"
+          >
+            <span className="font-medium">Admin Login:</span> FahadS <br />
+            <span className="font-medium">Pass:</span> 12345678
+          </div>
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            Create an account
+            Sign In to your account
           </h1>
           <Form {...form}>
             <form
